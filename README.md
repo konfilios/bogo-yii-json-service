@@ -166,7 +166,7 @@ class ProductJson extends CBJsonModel
 
 	/**
 	 * Manufacturer.
-	 * @var ManufacturerJson[]
+	 * @var ManufacturerJson
 	 */
 	public $manufacturer;
 
@@ -176,7 +176,9 @@ class ProductJson extends CBJsonModel
 	 */
 	public $categories = array();
 }
+```
 
+```php
 class ManufacturerJson extends CBJsonModel
 {
 	/**
@@ -191,7 +193,9 @@ class ManufacturerJson extends CBJsonModel
 	 */
 	public $title;
 }
+```
 
+```php
 class ProductCategoryJson extends CBJsonModel
 {
 	/**
