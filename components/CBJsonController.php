@@ -91,7 +91,7 @@
  * @package Components
  * @author Konstantinos Filios <konfilios@gmail.com>
  */
-class CBRestController extends CController
+class CBJsonController extends CController
 {
 	/**
 	 * Action params.
