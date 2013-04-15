@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class CBJson | Bogo Yii Json Service</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?3088851632"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-Components.html">Components</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-CBHttpRequest.html">CBHttpRequest</a></li>
+				<li class="active"><a href="class-CBJson.html">CBJson</a></li>
+				<li><a href="class-CBJsonController.html">CBJsonController</a></li>
+				<li><a href="class-CBJsonInlineAction.html">CBJsonInlineAction</a></li>
+				<li><a href="class-CBJsonModel.html">CBJsonModel</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-Components.html" title="Summary of Components"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class CBJson</h1>
+
+
+	<div class="description">
+	
+<p>Json helper functions.</p>
+Adds the following functionality:
+<ul>
+	<li>JSON string validation: CBJson::isValid()</li>
+
+	<li>JSON formatting/indentation: CBJson::indent()</li>
+
+	<li>JSON soft decoding: CBJson::softDecode*() (<i>does not fail if json is
+	invalid</i>)</li>
+</ul>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-Components.html">Components</a><br />
+
+				<b>Author:</b>
+				Konstantinos Filios &lt;<a
+href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br />
+				<b>Since:</b>
+				1.0<br />
+		<b>Located at</b> <a href="source-class-CBJson.html#2-194" title="Go to source code">components/CBJson.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="isValid" id="_isValid">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isValid">#</a>
+		<code><a href="source-class-CBJson.html#19-29" title="Go to source code">isValid</a>( <span>string <var>$json</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Check if passed string is valid json.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Check if passed string is valid json.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$json</var></dt>
+					<dd><code>string</code><br>$json Json string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True if passed $json is valid<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="indent" id="_indent">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_indent">#</a>
+		<code><a href="source-class-CBJson.html#31-90" title="Go to source code">indent</a>( <span>string <var>$json</var></span>, <span>string <var>$indentStr</var> = <span class="php-quote">' '</span></span>, <span>string <var>$newLine</var> = <span class="php-quote">&quot;\n&quot;</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Indent passed $json string to increase human-readability.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Indent passed $json string to increase human-readability.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$json</var></dt>
+					<dd><code>string</code><br>$json Unformatted json.</dd>
+					<dt><var>$indentStr</var></dt>
+					<dd><code>string</code><br>$indentStr Indentation string (tabulator).</dd>
+					<dt><var>$newLine</var></dt>
+					<dd><code>string</code><br>$newLine Line terminator.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<a
+href="http://recursive-design.com/blog/2008/03/11/format-json-with-php/">http://recursive-design.com/blog/2008/03/11/format-json-with-php/</a><br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLastErrorString" id="_getLastErrorString">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLastErrorString">#</a>
+		<code><a href="source-class-CBJson.html#92-130" title="Go to source code">getLastErrorString</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns string/text describing the last error occured while json
+encoding/decoding.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns string/text describing the last error occured while json
+encoding/decoding.</p>
+
+<p>This is supported only for php 5.3 or later.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<a
+href="http://www.php.net/manual/en/function.json-last-error.php">http://www.php.net/manual/en/function.json-last-error.php</a><br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="softDecode" id="_softDecode">
+
+		<td class="attributes"><code>
+			 public static
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_softDecode">#</a>
+		<code><a href="source-class-CBJson.html#132-148" title="Go to source code">softDecode</a>( <span>string <var>$jsonInput</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Try to json-decode input.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Try to json-decode input.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$jsonInput</var></dt>
+					<dd><code>string</code><br>$jsonInput</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="softDecodeArray" id="_softDecodeArray">
+
+		<td class="attributes"><code>
+			 public static
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_softDecodeArray">#</a>
+		<code><a href="source-class-CBJson.html#150-167" title="Go to source code">softDecodeArray</a>( <span>array <var>$jsonInputs</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Try to json-decode array elements.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Try to json-decode array elements.</p>
+
+<p>If elements are not json-decoded their original values are retained.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$jsonInputs</var></dt>
+					<dd><code>array</code><br>$jsonInputs</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="decodeAssoc" id="_decodeAssoc">
+
+		<td class="attributes"><code>
+			 public static
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_decodeAssoc">#</a>
+		<code><a href="source-class-CBJson.html#169-193" title="Go to source code">decodeAssoc</a>( <span>string <var>$jsonInput</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Decode json input.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Decode json input.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$jsonInput</var></dt>
+					<dd><code>string</code><br>$jsonInput</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code>CException</code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Bogo Yii Json Service API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

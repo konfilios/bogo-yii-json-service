@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class CBHttpRequest | Bogo Yii Json Service</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?3088851632"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-Components.html">Components</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-CBHttpRequest.html">CBHttpRequest</a></li>
+				<li><a href="class-CBJson.html">CBJson</a></li>
+				<li><a href="class-CBJsonController.html">CBJsonController</a></li>
+				<li><a href="class-CBJsonInlineAction.html">CBJsonInlineAction</a></li>
+				<li><a href="class-CBJsonModel.html">CBJsonModel</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-Components.html" title="Summary of Components"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class CBHttpRequest</h1>
+
+
+	<div class="description">
+	
+<p>Json-capable CHttpRequest.</p>
+The following capabilities are added to Yii::app()-&gt;request:
+<ol>
+	<li>Access to request headers: getRequestHeaders() and getRequestHeader()</li>
+
+	<li>Access to request raw payload: getRequestRawBody()</li>
+</ol>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+CHttpRequest
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>CBHttpRequest</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-Components.html">Components</a><br />
+
+				<b>Author:</b>
+				Konstantinos Filios &lt;<a
+href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br />
+				<b>Since:</b>
+				1.0<br />
+		<b>Located at</b> <a href="source-class-CBHttpRequest.html#2-160" title="Go to source code">components/CBHttpRequest.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="init" id="_init">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_init">#</a>
+		<code><a href="source-class-CBHttpRequest.html#35-57" title="Go to source code">init</a>( )</code>
+
+		<div class="description short">
+			
+<p>Initialize content type of request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Initialize content type of request.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAcceptContentTypes" id="_getAcceptContentTypes">
+
+		<td class="attributes"><code>
+			 public 
+			string[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAcceptContentTypes">#</a>
+		<code><a href="source-class-CBHttpRequest.html#74-82" title="Go to source code">getAcceptContentTypes</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns array of accepted content types.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns array of accepted content types.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string[]</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIsJsonRequest" id="_getIsJsonRequest">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIsJsonRequest">#</a>
+		<code><a href="source-class-CBHttpRequest.html#84-92" title="Go to source code">getIsJsonRequest</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns whether this is a JSON request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns whether this is a JSON request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRequestRawBody" id="_getRequestRawBody">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRequestRawBody">#</a>
+		<code><a href="source-class-CBHttpRequest.html#94-102" title="Go to source code">getRequestRawBody</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get raw body of HTTP request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get raw body of HTTP request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRequestHeaders" id="_getRequestHeaders">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRequestHeaders">#</a>
+		<code><a href="source-class-CBHttpRequest.html#104-146" title="Go to source code">getRequestHeaders</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get all request headers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all request headers.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Header value or null if header is not set<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRequestHeader" id="_getRequestHeader">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRequestHeader">#</a>
+		<code><a href="source-class-CBHttpRequest.html#148-159" title="Go to source code">getRequestHeader</a>( <span>string <var>$fieldName</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get request header value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get request header value.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fieldName</var></dt>
+					<dd><code>string</code><br>$fieldName</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Header value or null if header is not set<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Bogo Yii Json Service API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

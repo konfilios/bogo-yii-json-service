@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class CBJsonController | Bogo Yii Json Service</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?3088851632"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-Components.html">Components</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-CBHttpRequest.html">CBHttpRequest</a></li>
+				<li><a href="class-CBJson.html">CBJson</a></li>
+				<li class="active"><a href="class-CBJsonController.html">CBJsonController</a></li>
+				<li><a href="class-CBJsonInlineAction.html">CBJsonInlineAction</a></li>
+				<li><a href="class-CBJsonModel.html">CBJsonModel</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-Components.html" title="Summary of Components"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class CBJsonController</h1>
+
+
+	<div class="description">
+	
+<p>Yii controllers exchanging JSON objects.</p>
+
+<p>This base controller class allows developers to write controller actions
+which expect object parameters and return objects instead of printing/rendering
+them. It also has a uniform error handling mechanism which converts exceptions
+and PHP errors to standard-form jsons. The client application can be tuned to
+properly handle such exceptions.</p>
+
+<p>This approach, apart from making writing actions as if they were naturally
+called by the client/consumer, allows for proper out-of-the-box documentation
+(i.e. through apigen).</p>
+
+<p></p>
+
+<h2>Action signatures</h2>
+ All restful action <b>signatures</b>:
+<ul>
+	<li>Accept at most one <b>input parameter</b> object. The input parameter name
+	can be anything since there's at most one parameter.</li>
+
+	<li>Return exactly one <b>output</b> object.</li>
+</ul>
+ Here is an example of a restful action expecting an object and returning
+another:
+<pre>
+        public function actionGetAll(NotificationQueryJson $notificationQuery)
+        {
+                return new NotificationJson();
+        }
+</pre>
+
+<p></p>
+
+<h2>Request/Input Objects</h2>
+
+<p><b>Input</b> parameters are fetched in two different ways:</p>
+
+<ul>
+	<li><b>Production mode</b>: From the POST body as raw json object.</li>
+
+	<li><b>Development mode</b>: From the 'jsin' GET parameter as raw json
+	object.</li>
+</ul>
+
+<p><b>Input</b> object types of a restful action can be:</p>
+
+<ul>
+	<li>Scalars</li>
+
+	<li>Objects of a CBJsonModel subtype</li>
+</ul>
+
+<p></p>
+
+<h2>Request/Input Headers</h2>
+
+<p>Further input can be passed to a restful action through <b>request
+headers</b>:</p>
+
+<ul>
+	<li><b>Production mode</b>: Headers of the form 'this-is-some-header' are
+	accessed as 'thisIsSomeHeader':
+		<pre>
+this-is-some-header: someValue\r\n
+this-is-another-header: anotherValue\r\n
+</pre>
+	</li>
+
+	<li><b>Development mode</b>: From the 'header' GET parameter as a hash:
+		<pre>
+http://.../jsin=...&amp;header[thisIsSomeHeader]=someValue&amp;header[thisIsAnotherHeader]=anotherValue
+</pre>
+	</li>
+</ul>
+
+<p></p>
+
+<h2>Response/Output objects</h2>
+
+<p><b>Output</b> object types of a restful action can be:</p>
+
+<ul>
+	<li>Scalars</li>
+
+	<li>Objects of a CBJsonModel subtype</li>
+
+	<li>Arrays of the above two element types</li>
+</ul>
+ Output objects are always automatically converted to json. Appropriate
+content-type headers are also automatically sent.
+<p></p>
+
+<h2>Response/Output errors</h2>
+
+<p><b>Errors</b> are uniformly output using the createErrorObject method.</p>
+
+<p></p>
+
+<h2>Examples</h2>
+
+<p>Here is an example GET request (for development mode) with both header and
+json:</p>
+
+<pre>
+http://.../index-test.php?r=controller/action&amp;header[applicationId]=1&amp;jsin={&quot;id&quot;:34034,&quot;name&quot;:&quot;John Doe&quot;}
+</pre>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+CController
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>CBJsonController</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-Components.html">Components</a><br />
+
+				<b>Author:</b>
+				Konstantinos Filios &lt;<a
+href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br />
+				<b>Since:</b>
+				1.0<br />
+		<b>Located at</b> <a href="source-class-CBJsonController.html#2-448" title="Go to source code">components/CBJsonController.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="init" id="_init">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_init">#</a>
+		<code><a href="source-class-CBJsonController.html#104-115" title="Go to source code">init</a>( )</code>
+
+		<div class="description short">
+			
+<p>Install error and exception handlers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Install error and exception handlers.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHeader" id="_getHeader">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHeader">#</a>
+		<code><a href="source-class-CBJsonController.html#117-126" title="Go to source code">getHeader</a>( <span>string <var>$fieldName</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get request header.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get request header.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fieldName</var></dt>
+					<dd><code>string</code><br>$fieldName</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderJson" id="_renderJson">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderJson">#</a>
+		<code><a href="source-class-CBJsonController.html#128-154" title="Go to source code">renderJson</a>( <span>string <var>$responseObject</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Print json and headers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Print json and headers.</p>
+
+<p>If we in debug mode, output json is 'prettyfied' for human-readability which
+eases debugging.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$responseObject</var></dt>
+					<dd><code>string</code><br>$responseObject</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="displaySummary" id="_displaySummary">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_displaySummary">#</a>
+		<code><a href="source-class-CBJsonController.html#176-228" title="Go to source code">displaySummary</a>( <span>array <var>$logs</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Displays the summary report of the profiling result.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Displays the summary report of the profiling result.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$logs</var></dt>
+					<dd><code>array</code><br>$logs list of logs</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="aggregateResult" id="_aggregateResult">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_aggregateResult">#</a>
+		<code><a href="source-class-CBJsonController.html#230-246" title="Go to source code">aggregateResult</a>( <span>array <var>$result</var></span>, <span>float <var>$delta</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Aggregates the report result.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Aggregates the report result.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$result</var></dt>
+					<dd><code>array</code><br>$result log result for this code block</dd>
+					<dt><var>$delta</var></dt>
+					<dd><code>float</code><br>$delta time spent for this code block</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="runAction" id="_runAction">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_runAction">#</a>
+		<code><a href="source-class-CBJsonController.html#248-279" title="Go to source code">runAction</a>( <span>CAction <var>$action</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Runs the action after passing through all filters.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Runs the action after passing through all filters.</p>
+
+<p>This method is invoked by runActionWithFilters after all possible
+filters have been executed and the action starts to run.</p>
+
+<p>The major difference from the parent method is that it does the rendering
+instead of the actions themselves which just return objects.</p>
+
+<p>Also catches exceptions and prints them accordingly.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$action</var></dt>
+					<dd><code>CAction</code><br>$action action to run</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createAction" id="_createAction">
+
+		<td class="attributes"><code>
+			 public 
+			CAction
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createAction">#</a>
+		<code><a href="source-class-CBJsonController.html#281-307" title="Go to source code">createAction</a>( <span>string <var>$actionId</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Creates the action instance based on the action name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates the action instance based on the action name.</p>
+
+<p>The method differs from the parent in that it uses CBJsonInlineAction for
+inline actions.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$actionId</var></dt>
+					<dd><code>string</code><br>$actionId ID of the action. If empty, the defaultAction default action
+will be used.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>CAction</code><br>the action instance, null if the action does not exist.<br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						actions<br />
+				</div>
+				<h4>Todo</h4>
+				<div class="list">
+						Implement External Actions as well.<br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getActionParams" id="_getActionParams">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getActionParams">#</a>
+		<code><a href="source-class-CBJsonController.html#309-347" title="Go to source code">getActionParams</a>( )</code>
+
+		<div class="description short">
+			
+<p>Extract json input object.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Extract json input object.</p>
+Jsin is short for "json input object". The jsin can be extracted in two ways:
+<ol>
+	<li>From raw PUT/POST request body, if it's a PUT/POST request</li>
+
+	<li>From 'jsin' GET parameter, if it's a GET request and we're in test mode</li>
+</ol>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="onException" id="_onException">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_onException">#</a>
+		<code><a href="source-class-CBJsonController.html#349-363" title="Go to source code">onException</a>( <span>CExceptionEvent <var>$event</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Handle uncaught exception.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Handle uncaught exception.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code>CExceptionEvent</code><br>$event</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="onError" id="_onError">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_onError">#</a>
+		<code><a href="source-class-CBJsonController.html#365-409" title="Go to source code">onError</a>( <span>CErrorEvent <var>$event</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Handle uncaught PHP notice/warning/error.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Handle uncaught PHP notice/warning/error.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code>CErrorEvent</code><br>$event</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="outputTotalMillitimeHeader" id="_outputTotalMillitimeHeader">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_outputTotalMillitimeHeader">#</a>
+		<code><a href="source-class-CBJsonController.html#411-418" title="Go to source code">outputTotalMillitimeHeader</a>( )</code>
+
+		<div class="description short">
+			
+<p>Output total millitime header.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Output total millitime header.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createErrorObject" id="_createErrorObject">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createErrorObject">#</a>
+		<code><a href="source-class-CBJsonController.html#420-447" title="Go to source code">createErrorObject</a>( <span>integer <var>$code</var></span>, <span>string <var>$message</var></span>, <span>string <var>$traceString</var></span>, <span>string <var>$type</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a standard-form error object from passed details.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a standard-form error object from passed details.</p>
+
+<p>This allows for all kinds of errors (exceptions, php errors, etc.) to be
+returned to the service user in a standard form.</p>
+
+<p>If you wish to add further notification mechanisms you can override this
+method.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$code</var></dt>
+					<dd><code>integer</code><br>$code</dd>
+					<dt><var>$message</var></dt>
+					<dd><code>string</code><br>$message</dd>
+					<dt><var>$traceString</var></dt>
+					<dd><code>string</code><br>$traceString</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="groupByToken" id="$groupByToken">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-CBJsonController.html#174" title="Go to source code"><var>$groupByToken</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$groupByToken" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Bogo Yii Json Service API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
