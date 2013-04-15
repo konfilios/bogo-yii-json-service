@@ -1,7 +1,9 @@
 BogoYiiJsonService
 ==================
 
-JSON Controllers for Yii applications
+JSON Controllers for Yii applications.
+
+Latest version: 1.0 (23 Mar 2012)
 
 ## Installation
 
