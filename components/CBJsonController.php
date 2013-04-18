@@ -94,6 +94,12 @@
 class CBJsonController extends CController
 {
 	/**
+	 * Active action.
+	 * @var CAction
+	 */
+	private $_action;
+
+	/**
 	 * Action params.
 	 *
 	 * Stored in case debugging is on.
@@ -144,9 +150,9 @@ class CBJsonController extends CController
 			// Beautify
 			$responseJson = CBJson::indent(json_encode($responseObject));
 			echo($responseJson);
-			Yii::log($_GET['r']."\n"
-					."Request: ".print_r($this->_actionParams, true)."\n"
-					."Response: ".$responseJson, CLogger::LEVEL_TRACE, 'application.RestController');
+			Yii::log((!empty($this->_action) ? $this->_action->id : 'Unknown action')."\n"
+					."Request Params: ".print_r($this->_actionParams, true)."\n"
+					."Response Object: ".$responseJson, CLogger::LEVEL_TRACE, 'application.CBRestController');
 		} else {
 			// Simple, compact result
 			echo(json_encode($responseObject));
@@ -260,6 +266,9 @@ class CBJsonController extends CController
 	 */
 	public function runAction($action)
 	{
+		// Store action for debugging
+		$this->_action = $action;
+
 		// Retrieve action parameters
 		$this->_actionParams = $this->getActionParams();
 
