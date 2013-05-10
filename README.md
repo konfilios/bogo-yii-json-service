@@ -60,6 +60,7 @@ return array(
 ### Quick sample
 
 Below a sample code which highlights the usage of JSON capabilities. Things you should keep are:
+
 1. The controller `extends` the `CBJsonController` component
 2. The method accepts a `ProductQueryJson` object instead of looking into `$_GET`/`$_POST`
 3. The method `return`s an array of `ProductJson` objects instead of calling `$this->render()`
