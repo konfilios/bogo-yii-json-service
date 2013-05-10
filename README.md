@@ -1,5 +1,5 @@
-BogoYiiJsonService
-==================
+bogo-yii-json-service
+=====================
 
 JSON Controllers for Yii applications.
 
@@ -9,7 +9,7 @@ Latest version: 1.0 (23 Mar 2012)
 
 ### Get the code
 
-Download and extract the code into `/protected/extensions/BogoYiiJsonService/` folder.
+Download and extract the code into `/protected/extensions/bogo-yii-json-service/` folder.
 
 ### Make it visible
 
@@ -23,7 +23,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		// [..]
-		'ext.BogoYiiJsonService.components.*',
+		'ext.bogo-yii-json-service.components.*',
 		// [..]
 	),
 
@@ -57,10 +57,12 @@ return array(
 
 ## Usage
 
-### The Controller
+### Quick sample
 
-Now you're ready to write your first JSON-capable controller. All you have to do is extend
-`CBJsonController`. Here's a simple example:
+Below a sample code which highlights the usage of JSON capabilities. Things you should keep are:
+1. The controller `extends` the `CBJsonController` component
+2. The method accepts a `ProductQueryJson` object instead of looking into `$_GET`/`$_POST`
+3. The method `return`s an array of `ProductJson` objects instead of calling `$this->render()`
 
 ```php
 class ProductController extends CBJsonController
@@ -71,7 +73,7 @@ class ProductController extends CBJsonController
 	 * @param ProductQueryJson $queryJson Query criteria
 	 * @return ProductJson[] Matching products
 	 */
-	public function actionCreateProduct(ProductQueryJson $queryJson)
+	public function actionFindProduct(ProductQueryJson $queryJson)
 	{
 		$foundProducts = Product::model()->scopeApplyQuery($queryJson)->findAll();
 
@@ -80,135 +82,11 @@ class ProductController extends CBJsonController
 }
 ```
 
-You'll notice we've used two JSON classes here:
-+ `ProductQueryJson`: This holds the query data sent by our client/caller.
-+ `ProductJson`: This is a wrapper class which only reveals the properties of `Product` model we wish to reveal.
+### More detailed Usage
 
-A sample definition of the two classes follows.
+For more details and examples, see the [the demo page](demo/)
 
-### The Request JSON
+## Output
 
-The product query extends the `CBJsonModel` class.
-
-```php
-class ProductQueryJson extends CBJsonModel
-{
-	/**
-	 * Minimum product price filter.
-	 * @var double
-	 */
-	public $filterMinPrice;
-
-	/**
-	 * Limit results.
-	 * @var integer
-	 */
-	public $resultsLimit;
-
-	/**
-	 * Column to order results.
-	 * @var string
-	 */
-	public $resultsOrderBy;
-}
-```
-
-### The Response JSON
-
-Although the `Product` Active Record model might feature hundreds of properties, we may only want to reveal
-its name, price, manufacturer and relevant categories, corresponding to, let's say,
-`Manufacturer` and `ProductCategory` Active Record models.
-
-Here's a nice demonstration of how you can create a "deep" JSON which links to other object
-types or arrays of them.
-
-Notice the "compound" `ProductJson` class which overrides the `getAttributeTypes()` method
-which gives information about non-scalar types. This is, unfortunately the only way to go given
-PHP does not support type hints in class properties and phpdoc comments may be removed on a
-production environment for performance reasons (i.e. this is what APC does).
-
-In the following classes it's assumed that the mentioned properties also exist in the respective
-Active Record classes, either as simple properties or "magic" properties.
-
-```php
-class ProductJson extends CBJsonModel
-{
-	/**
-	 * Types of non-scalar members.
-	 *
-	 * @return string[]
-	 */
-	public function getAttributeTypes()
-	{
-		return array(
-			'manufacturer' => 'ManufacturerJson',
-			'categories' => 'ProductCategoryJson[]',
-		);
-	}
-
-	/**
-	 * Product id.
-	 * @var integer
-	 */
-	public $id;
-
-	/**
-	 * Product title.
-	 * @var string
-	 */
-	public $title;
-
-	/**
-	 * Product price.
-	 * @var double
-	 */
-	public $price;
-
-	/**
-	 * Manufacturer.
-	 * @var ManufacturerJson
-	 */
-	public $manufacturer;
-
-	/**
-	 * Relevant categories.
-	 * @var ProductCategoryJson[]
-	 */
-	public $categories = array();
-}
-```
-
-```php
-class ManufacturerJson extends CBJsonModel
-{
-	/**
-	 * Product id.
-	 * @var integer
-	 */
-	public $id;
-
-	/**
-	 * Product title.
-	 * @var string
-	 */
-	public $title;
-}
-```
-
-```php
-class ProductCategoryJson extends CBJsonModel
-{
-	/**
-	 * Product id.
-	 * @var integer
-	 */
-	public $id;
-
-	/**
-	 * Product title.
-	 * @var string
-	 */
-	public $title;
-}
-
-```
+Here's the [demo/docs/package-RestApi.Services.html](demo documentation) you get by using this
+extension in conjunction with proper phpdoc comments.

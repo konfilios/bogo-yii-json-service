@@ -7,7 +7,7 @@
 	<title>Class CBJsonController | Bogo Yii Json Service</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?3088851632"></script>
+	<script type="text/javascript" src="elementlist.js?3478591440"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,6 +23,18 @@
 			<ul>
 				<li class="active"><a href="package-Components.html">Components</a>
 						</li>
+				<li><a href="package-Internals.html">Internals<span></span></a>
+						<ul>
+				<li><a href="package-Internals.AR.html">AR</a>
+						</li>
+							</ul></li>
+				<li><a href="package-RestApi.html">RestApi<span></span></a>
+						<ul>
+				<li><a href="package-RestApi.Objects.html">Objects</a>
+						</li>
+				<li><a href="package-RestApi.Services.html">Services</a>
+						</li>
+							</ul></li>
 			</ul>
 		</div>
 
@@ -211,6 +223,10 @@ CController
 	</dl>
 
 
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-ProductController.html">ProductController</a>
+	</div>
 
 
 
@@ -228,7 +244,7 @@ CController
 href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Since:</b>
 				1.0<br />
-		<b>Located at</b> <a href="source-class-CBJsonController.html#2-448" title="Go to source code">components/CBJsonController.php</a><br />
+		<b>Located at</b> <a href="source-class-CBJsonController.html#2-457" title="Go to source code">components/CBJsonController.php</a><br />
 	</div>
 
 
@@ -246,7 +262,7 @@ href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br 
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-CBJsonController.html#104-115" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-CBJsonController.html#110-121" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			
@@ -279,7 +295,7 @@ href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br 
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getHeader">#</a>
-		<code><a href="source-class-CBJsonController.html#117-126" title="Go to source code">getHeader</a>( <span>string <var>$fieldName</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#123-132" title="Go to source code">getHeader</a>( <span>string <var>$fieldName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -321,7 +337,7 @@ href="mailto:konfilios&#64;gmail.com">konfilios&#64;<!---->gmail.com</a>&gt;<br 
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderJson">#</a>
-		<code><a href="source-class-CBJsonController.html#128-154" title="Go to source code">renderJson</a>( <span>string <var>$responseObject</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#134-160" title="Go to source code">renderJson</a>( <span>string <var>$responseObject</var></span> )</code>
 
 		<div class="description short">
 			
@@ -362,7 +378,7 @@ eases debugging.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_displaySummary">#</a>
-		<code><a href="source-class-CBJsonController.html#176-228" title="Go to source code">displaySummary</a>( <span>array <var>$logs</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#182-234" title="Go to source code">displaySummary</a>( <span>array <var>$logs</var></span> )</code>
 
 		<div class="description short">
 			
@@ -400,7 +416,7 @@ eases debugging.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_aggregateResult">#</a>
-		<code><a href="source-class-CBJsonController.html#230-246" title="Go to source code">aggregateResult</a>( <span>array <var>$result</var></span>, <span>float <var>$delta</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#236-252" title="Go to source code">aggregateResult</a>( <span>array <var>$result</var></span>, <span>float <var>$delta</var></span> )</code>
 
 		<div class="description short">
 			
@@ -444,7 +460,7 @@ eases debugging.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_runAction">#</a>
-		<code><a href="source-class-CBJsonController.html#248-279" title="Go to source code">runAction</a>( <span>CAction <var>$action</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#254-288" title="Go to source code">runAction</a>( <span>CAction <var>$action</var></span> )</code>
 
 		<div class="description short">
 			
@@ -490,7 +506,7 @@ instead of the actions themselves which just return objects.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createAction">#</a>
-		<code><a href="source-class-CBJsonController.html#281-307" title="Go to source code">createAction</a>( <span>string <var>$actionId</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#290-316" title="Go to source code">createAction</a>( <span>string <var>$actionId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -544,7 +560,7 @@ will be used.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getActionParams">#</a>
-		<code><a href="source-class-CBJsonController.html#309-347" title="Go to source code">getActionParams</a>( )</code>
+		<code><a href="source-class-CBJsonController.html#318-356" title="Go to source code">getActionParams</a>( )</code>
 
 		<div class="description short">
 			
@@ -587,7 +603,7 @@ Jsin is short for "json input object". The jsin can be extracted in two ways:
 
 		<td class="name"><div>
 		<a class="anchor" href="#_onException">#</a>
-		<code><a href="source-class-CBJsonController.html#349-363" title="Go to source code">onException</a>( <span>CExceptionEvent <var>$event</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#358-372" title="Go to source code">onException</a>( <span>CExceptionEvent <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -625,7 +641,7 @@ Jsin is short for "json input object". The jsin can be extracted in two ways:
 
 		<td class="name"><div>
 		<a class="anchor" href="#_onError">#</a>
-		<code><a href="source-class-CBJsonController.html#365-409" title="Go to source code">onError</a>( <span>CErrorEvent <var>$event</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#374-418" title="Go to source code">onError</a>( <span>CErrorEvent <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -663,7 +679,7 @@ Jsin is short for "json input object". The jsin can be extracted in two ways:
 
 		<td class="name"><div>
 		<a class="anchor" href="#_outputTotalMillitimeHeader">#</a>
-		<code><a href="source-class-CBJsonController.html#411-418" title="Go to source code">outputTotalMillitimeHeader</a>( )</code>
+		<code><a href="source-class-CBJsonController.html#420-427" title="Go to source code">outputTotalMillitimeHeader</a>( )</code>
 
 		<div class="description short">
 			
@@ -696,7 +712,7 @@ Jsin is short for "json input object". The jsin can be extracted in two ways:
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createErrorObject">#</a>
-		<code><a href="source-class-CBJsonController.html#420-447" title="Go to source code">createErrorObject</a>( <span>integer <var>$code</var></span>, <span>string <var>$message</var></span>, <span>string <var>$traceString</var></span>, <span>string <var>$type</var></span> )</code>
+		<code><a href="source-class-CBJsonController.html#429-456" title="Go to source code">createErrorObject</a>( <span>integer <var>$code</var></span>, <span>string <var>$message</var></span>, <span>string <var>$traceString</var></span>, <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -761,7 +777,7 @@ method.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-CBJsonController.html#174" title="Go to source code"><var>$groupByToken</var></a>
+				<a href="source-class-CBJsonController.html#180" title="Go to source code"><var>$groupByToken</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>
