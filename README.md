@@ -5,6 +5,33 @@ JSON Controllers for Yii applications.
 
 Latest version: 1.0 (23 Mar 2012)
 
+##Requirements
+
+This has been tested on Yii 1.1.10+
+
+##Features
+
+###Action Input parameters
+
+You define your input parameters as objects, which are actually the JSON-decoded payload of your
+caller's request. Decoding and validation takes place transparently, as long as your input object
+is a subclass of `CBJsonModel`.
+
+###Action Return values
+You return your action's response with `return` instead of `render`. It's highly *suggested*
+that your return objects are subtypes of CBJsonModel or arrays of such objects. Still, this is a
+suggestion, of course you can return anything that json_encode() accepts, as long as you trust what
+you're exposing to your caller.
+
+###PHPdoc for your json services
+The above allow for automatic documentation of your services, e.g. using apigen. The produced
+documentation can be then published and let your clients/callers know exactly what they should pass
+as input and what to expect as output.
+
+###Consistent error and exception handling
+Error handling is done automatically, i.e. whenever an exception or PHP error is thrown, a
+standard-format JSON is returned which your caller may then parse and handle.
+
 ## Installation
 
 ### Get the code
