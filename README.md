@@ -86,7 +86,7 @@ class ProductController extends CBJsonController
 
 For more details and examples, see the [the demo page](demo/)
 
-## Output
+### Your API's public documentation
 
-Here's the [demo/docs/package-RestApi.Services.html](demo documentation) you get by using this
-extension in conjunction with proper phpdoc comments.
+Here's the [demo controller documentation](http://htmlpreview.github.io/?https://raw.github.com/drcypher/bogo-yii-json-service/master/demo/docs/class-ProductController.html)
+you get by using this extension in conjunction with proper phpdoc comments and [apigen](http://apigen.org/).

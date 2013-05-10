@@ -3,6 +3,9 @@ bogo-yii-json-service demo application
 
 This is a demo of a project using bogo-yii-json-service for a JSON-capable API.
 
+The major directories presented are `controllers` and `models`, part of every standard Yii
+project.
+
 ## Highlights
 
 ### Controller
@@ -16,23 +19,34 @@ This is a demo of a project using bogo-yii-json-service for a JSON-capable API.
 
 ### Models
 
-**Separate AR from JSON**: The `models/` folder is further structured to seperate **internal ActiveRecord
+1. **Separate internal AR from public JSON**: The `models/` folder is further structured to seperate **internal ActiveRecord
 models** (`models/ar/` subfolder) from **publicly exposed JSON models** (`models/json/`).
-
 This is very important, due to the following reasons:
-
-1. Chances are you'll have JSON model's with **similar names as the AR models**. For example, notice
-   you have a `Product` model for active record and a `ProductJson` model which is its representation
-   in the public world. A flat `models/` folder will make your life really difficult while looking up
-   files through your IDE.
-
-2. Your apigen/phpdocumentor configuration will be simpler if you only tell it to look into the
+  * Chances are you'll have JSON model's with **similar names as the AR models**. For example, notice
+    you have a `Product` model for active record and a `ProductJson` model which is its representation
+    in the public world. A flat `models/` folder will make your life really difficult while looking up
+    files through your IDE.
+  * Your apigen/phpdocumentor configuration will be simpler if you only tell it to look into the
    `models/json` folder while generating the public documentation
 
-From the above comments it's clear that the `Json` postfix in class names is necessary to avoid name
-conflicts, since most of the times you'll be combining JSON and AR models in the same controller.
+  From the above comments it's clear that the `Json` postfix in class names is necessary to avoid name
+  conflicts, since most of the times you'll be combining JSON and AR models in the same controller.
 
-**Document your JSON models**: This documentation will be exposed to your consumers.
+2. **Document**: This documentation will be exposed to your consumers.
+
+### Documentation
+
+You'll get your public by doing the following:
+
+1. Document your controllers and their methods using phpdoc
+2. Document your JSON models using phpdoc
+3. Customize a [apigen.neon configuration file](apigen.neon)
+4. Run [apigen](http://apigen.org/) using this command
+```
+~/code/bogo-yii-json-service/demo$ apigen -c ./apigen.neon
+```
+5. Check the [output](http://htmlpreview.github.com/?https://github.com/drcypher/bogo-yii-json-service/blob/master/demo/docs/index.html)
+
 
 
 ## In detail

@@ -1,6 +1,6 @@
 <?php
 /**
- * Json representation of the Manufacturer AR model.
+ * Json representation of the Product Category AR model.
  *
  * @package RestApi.Objects
  * @author Konstantinos Filios <konfilios@gmail.com>
