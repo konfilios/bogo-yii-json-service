@@ -12,13 +12,13 @@
  *
  * <p>
  * <h2>Action signatures</h2>
- * All restful action <b>signatures</b>:
+ * All json action <b>signatures</b>:
  * <ul>
  * <li>Accept at most one <b>input parameter</b> object. The input parameter name can be
  * anything since there's at most one parameter.</li>
  * <li>Return exactly one <b>output</b> object.</li>
  * </ul>
- * Here is an example of a restful action expecting an object and returning another:
+ * Here is an example of a json action expecting an object and returning another:
  * <pre>
  * 	public function actionGetAll(NotificationQueryJson $notificationQuery)
  * 	{
@@ -36,7 +36,7 @@
  * </ul>
  *
  * <p>
- * <b>Input</b> object types of a restful action can be:
+ * <b>Input</b> object types of a json action can be:
  * <ul>
  * <li>Scalars</li>
  * <li>Objects of a CBJsonModel subtype</li>
@@ -46,7 +46,7 @@
  * <p>
  * <h2>Request/Input Headers</h2>
  * <p>
- * Further input can be passed to a restful action through <b>request headers</b>:
+ * Further input can be passed to a json action through <b>request headers</b>:
  * <ul>
  * <li><b>Production mode</b>: Headers of the form 'this-is-some-header' are accessed as
  * 'thisIsSomeHeader':
@@ -65,7 +65,7 @@
  * <p>
  * <h2>Response/Output objects</h2>
  * <p>
- * <b>Output</b> object types of a restful action can be:
+ * <b>Output</b> object types of a json action can be:
  * <ul>
  * <li>Scalars</li>
  * <li>Objects of a CBJsonModel subtype</li>

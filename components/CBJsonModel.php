@@ -84,10 +84,18 @@ class CBJsonModel extends CFormModel
 				$attrType = $attrTypes[$attrName];
 
 				if (substr($attrType, -2) === '[]') {
-					// Array of objects
-
+					// Array type
+					$isAttrTypeArray = true;
 					// Remove "[]"
 					$attrType = substr($attrType, 0, -2);
+				} else {
+					// Non-array type
+					$isAttrTypeArray = false;
+				}
+
+				// Object or array of objects
+				if ($isAttrTypeArray) {
+					// Array of objects
 
 					if (!is_array($attrValue)) {
 						// Make sure value is an array of objects
@@ -98,26 +106,48 @@ class CBJsonModel extends CFormModel
 					$arrayJsonModels = array();
 					foreach ($attrValue as $fromJsonAttributeElement) {
 						// Loop through array of objects and create corresponding json models
-						$elementJsonModel = new $attrType();
-
-						// Recurse into sub-object
-						$elementJsonModel->copyFrom($fromJsonAttributeElement);
-
-						$arrayJsonModels[] = $elementJsonModel;
+						$arrayJsonModels[] = $this->castFrom($attrType, $fromJsonAttributeElement);
 					}
 					$this->$attrName = $arrayJsonModels;
 
 				} else {
-					// Object
-					$elementJsonModel = new $attrType();
-
-					// Recurse into sub-object
-					$this->$attrName = $elementJsonModel->copyFrom($attrValue);
+					// Simple object
+					$this->$attrName = $this->castFrom($attrType, $attrValue);
 				}
 			}
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Cast $sourceData into $targetType.
+	 *
+	 * @param string $targetType
+	 * @param mixed $sourceData
+	 * @return mixed
+	 */
+	private function castFrom($targetType, &$sourceData)
+	{
+		switch ($targetType) {
+		case 'integer':
+			return intval($sourceData);
+
+		case 'float':
+			return floatval($sourceData);
+
+		case 'boolean':
+			return boolval($sourceData);
+
+		default:
+			// Non-standard object type
+			$elementJsonModel = new $targetType();
+
+			// Recurse into sub-object
+			$elementJsonModel->copyFrom($sourceData);
+
+			return $elementJsonModel;
+		}
 	}
 
 	/**
