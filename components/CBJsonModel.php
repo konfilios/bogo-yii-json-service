@@ -2,7 +2,7 @@
 /**
  * Base class for JSON models.
  *
- * @since 1.0
+ * @since 1.1
  * @package Components
  * @author Konstantinos Filios <konfilios@gmail.com>
  */
@@ -121,6 +121,26 @@ class CBJsonModel extends CFormModel
 	}
 
 	/**
+	 * UTC datetime object.
+	 *
+	 * @var Datetime
+	 */
+	private $utcDatetime;
+
+	/**
+	 * @return Datetime
+	 */
+	private function getUtcDatetime()
+	{
+		if ($this->utcDatetime === null) {
+			$this->utcDatetime = new DateTime();
+			$this->utcDatetime->setTimezone(new DateTimeZone('UTC'));
+		}
+
+		return $this->utcDatetime;
+	}
+
+	/**
 	 * Cast $sourceData into $targetType.
 	 *
 	 * @param string $targetType
@@ -133,11 +153,18 @@ class CBJsonModel extends CFormModel
 		case 'integer':
 			return intval($sourceData);
 
+		case 'double':
 		case 'float':
 			return floatval($sourceData);
 
 		case 'boolean':
 			return boolval($sourceData);
+
+		case 'utc8601datetime':
+			return $this->getUtcDatetime()->modify($sourceData)->format("Y-m-d\TH:i:s\Z");
+
+		case 'utctimestamp':
+			return $this->getUtcDatetime()->modify($sourceData)->format("U");
 
 		default:
 			// Non-standard object type
