@@ -1,0 +1,113 @@
+<?php
+/**
+ * Description of GridResultsJson
+ *
+ * @since 1.2
+ * @package Components
+ * @author Konstantinos Filios <konfilios@gmail.com>
+ */
+class CBJsonModelGridResults extends CBJsonModel
+{
+	/**
+	 * Offset of results.
+	 *
+	 * @var array
+	 */
+	public $items;
+
+	/**
+	 * Total number of items matching the query.
+	 *
+	 * Used for client-side pagination.
+	 *
+	 * @var integer
+	 */
+	public $totalCount;
+
+	/**
+	 * Query sequence number.
+	 *
+	 * @var integer
+	 */
+	public $sequence;
+
+	/**
+	 * Get type of a single item based on the type of `items`.
+	 *
+	 * @return string
+	 * @throws Exception
+	 * @ignore
+	 */
+	private function getItemType()
+	{
+		$attributeTypes = $this->getAttributeTypes();
+
+		if (empty($attributeTypes['items'])) {
+			return null;
+		}
+
+		$itemsType = $attributeTypes['items'];
+
+		if ($itemsType == 'array') {
+			return null;
+		}
+
+		if (substr($itemsType, -2) != '[]') {
+			throw new Exception('Items datatype should be of array form');
+		}
+
+		return substr($itemsType, 0, -2);
+	}
+
+	/**
+	 * Create a grid results object.
+	 *
+	 * @param CActiveRecord $itemFinder
+	 * @param CActiveRecord $itemCounter
+	 * @param CBJsonModelGridQuery $query
+	 * @return static
+	 * @ignore
+	 */
+	static public function createPaginated(CActiveRecord $itemFinder, CActiveRecord $itemCounter, CBJsonModelGridQuery $query)
+	{
+		$results = new static();
+
+		$query->applyFilters($itemFinder);
+		$query->applyFilters($itemCounter);
+
+		//
+		// Fill total count
+		//
+		$results->totalCount = intval($itemCounter->count());
+
+		//
+		// Fill sequence number
+		//
+		$results->sequence = $query->sequence;
+
+		//
+		// Apply pagination to item finder
+		//
+		if (!empty($query->limit)) {
+			$itemFinder->dbCriteria->limit = $query->limit;
+		}
+
+		if (!empty($query->offset)) {
+			$itemFinder->dbCriteria->offset = $query->offset;
+		}
+
+		$itemFinder->dbCriteria->order = $query->getOrderBy();
+
+		// Find items
+		$foundItems = $itemFinder->findAll();
+		$itemType = $results->getItemType();
+
+		if (empty($itemType)) {
+			$results->items = $foundItems;
+		} else {
+			$results->items = $itemType::createFromMany($foundItems);
+		}
+
+		return $results;
+	}
+}
