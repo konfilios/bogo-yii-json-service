@@ -72,22 +72,15 @@ class CBJsonModelGridResults extends CBJsonModel
 	{
 		$results = new static();
 
+		//
+		// Apply all search parameters first
+		//
+
+		// Apply filters both to the finder and counter
 		$query->applyFilters($itemFinder);
 		$query->applyFilters($itemCounter);
 
-		//
-		// Fill total count
-		//
-		$results->totalCount = intval($itemCounter->count());
-
-		//
-		// Fill sequence number
-		//
-		$results->sequence = $query->sequence;
-
-		//
 		// Apply pagination to item finder
-		//
 		if (!empty($query->limit)) {
 			$itemFinder->dbCriteria->limit = $query->limit;
 		}
@@ -96,9 +89,22 @@ class CBJsonModelGridResults extends CBJsonModel
 			$itemFinder->dbCriteria->offset = $query->offset;
 		}
 
+		// Apply ordering to finder
 		$itemFinder->dbCriteria->order = $query->getOrderBy();
 
-		// Find items
+		//
+		// Echo back sequence number
+		//
+		$results->sequence = $query->sequence;
+
+		//
+		// Get total count
+		//
+		$results->totalCount = intval($itemCounter->count());
+
+		//
+		// Get items
+		//
 		$foundItems = $itemFinder->findAll();
 		$itemType = $results->getItemType();
 
