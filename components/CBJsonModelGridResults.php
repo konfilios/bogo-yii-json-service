@@ -70,6 +70,8 @@ class CBJsonModelGridResults extends CBJsonModel
 	 */
 	static public function createPaginated(CActiveRecord $itemFinder, CActiveRecord $itemCounter, CBJsonModelGridQuery $query)
 	{
+		$query->validate();
+
 		$results = new static();
 
 		//
@@ -77,20 +79,14 @@ class CBJsonModelGridResults extends CBJsonModel
 		//
 
 		// Apply filters both to the finder and counter
-		$query->applyFilters($itemFinder);
-		$query->applyFilters($itemCounter);
+		$query->applyFinderFilters($itemFinder);
+		$query->applyCounterFilters($itemCounter);
 
 		// Apply pagination to item finder
-		if (!empty($query->limit)) {
-			$itemFinder->dbCriteria->limit = $query->limit;
-		}
-
-		if (!empty($query->offset)) {
-			$itemFinder->dbCriteria->offset = $query->offset;
-		}
+		$query->applyPaging($itemFinder);
 
 		// Apply ordering to finder
-		$itemFinder->dbCriteria->order = $query->getOrderBy();
+		$query->applyOrderBy($itemFinder);
 
 		//
 		// Echo back sequence number

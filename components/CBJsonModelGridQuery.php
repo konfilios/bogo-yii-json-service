@@ -9,27 +9,16 @@
 class CBJsonModelGridQuery extends CBJsonModel
 {
 	/**
-	 * Associates sort aliases to sql names.
+	 * Maximum value for `limit` field.
 	 *
-	 * @return string[]
+	 * This is a safety mechanism to avoid accidentally retrieving the whole database. If
+	 * $maxLimit is set to an empty value any value can be given to $limit, but it's always
+	 * recommended you set a reasonable, non-zero maxLimit.
+	 *
+	 * @var integer
 	 * @ignore
 	 */
-	public function getSortFields()
-	{
-		return array();
-	}
-
-	/**
-	 * Apply query filters to counter/finder models.
-	 *
-	 * @param CActiveRecord $search
-	 * @return CActiveRecord
-	 * @ignore
-	 */
-	public function applyFilters($search)
-	{
-		return $search;
-	}
+	protected $maxLimit = 150;
 
 	/**
 	 * Column to order results.
@@ -58,12 +47,55 @@ class CBJsonModelGridQuery extends CBJsonModel
 	public $sequence;
 
 	/**
-	 * Order By sql string generated from $sort.
+	 * Associates sort aliases to sql names.
 	 *
-	 * @return string
+	 * @return string[]
 	 * @ignore
 	 */
-	public function getOrderBy()
+	public function getSortFields()
+	{
+		return array();
+	}
+
+	/**
+	 * Apply query filters to counter/finder models.
+	 *
+	 * @param CActiveRecord $search
+	 * @ignore
+	 */
+	public function applyFilters($search)
+	{
+	}
+
+	/**
+	 * Apply query filters to finder models.
+	 *
+	 * @param CActiveRecord $search
+	 * @ignore
+	 */
+	public function applyFinderFilters($search)
+	{
+		$this->applyFilters($search);
+	}
+
+	/**
+	 * Apply query filters to counter models.
+	 *
+	 * @param CActiveRecord $search
+	 * @ignore
+	 */
+	public function applyCounterFilters($search)
+	{
+		$this->applyFilters($search);
+	}
+
+	/**
+	 * Order By sql string generated from $sort.
+	 *
+	 * @param CActiveRecord $search
+	 * @ignore
+	 */
+	public function applyOrderBy($search)
 	{
 		$sqlOrderBy = '';
 
@@ -91,7 +123,7 @@ class CBJsonModelGridQuery extends CBJsonModel
 					// There's a manual transformation
 					$sqlFieldName = $sortFields[$fieldAlias];
 				} else {
-					throw new Exception('Unknown sort column "'.$fieldAlias.'"');
+					throw new Exception('Unknown sort field "'.$fieldAlias.'". Valid sort fields are: '.implode(', ', array_keys($sortFields)));
 				}
 
 				// Append to the ORDER BY string
@@ -99,6 +131,30 @@ class CBJsonModelGridQuery extends CBJsonModel
 			}
 		}
 
-		return $sqlOrderBy;
+		$search->dbCriteria->order = $sqlOrderBy;
+	}
+
+	/**
+	 * Apply limit & .
+	 *
+	 * @param CActiveRecord $search
+	 * @throws CHttpException
+	 * @ignore
+	 */
+	public function applyPaging($search)
+	{
+		if (!empty($this->maxLimit)) {
+			if (empty($this->limit) || $this->limit > $this->maxLimit) {
+				throw new CHttpException(400, 'You must set a limit value within [1, '.$this->maxLimit.']');
+			}
+		}
+
+		if (!empty($this->limit)) {
+			$search->dbCriteria->limit = $this->limit;
+		}
+
+		if (!empty($this->offset)) {
+			$search->dbCriteria->offset = $this->offset;
+		}
 	}
 }
