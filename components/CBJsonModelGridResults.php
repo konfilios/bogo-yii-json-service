@@ -43,20 +43,20 @@ class CBJsonModelGridResults extends CBJsonModel
 		$attributeTypes = $this->getAttributeTypes();
 
 		if (empty($attributeTypes['items'])) {
-			return null;
+			return array(null, null);
 		}
 
 		$itemsType = $attributeTypes['items'];
 
 		if ($itemsType == 'array') {
-			return null;
+			return array(null, null);
 		}
 
-		if (substr($itemsType, -2) != '[]') {
-			throw new Exception('Items datatype should be of array form');
+		if (substr($itemsType, -2) == '[]') {
+			return array(substr($itemsType, 0, -2), true);
+		} else {
+			return array($itemsType, false);
 		}
-
-		return substr($itemsType, 0, -2);
 	}
 
 	/**
@@ -102,12 +102,16 @@ class CBJsonModelGridResults extends CBJsonModel
 		// Get items
 		//
 		$foundItems = $itemFinder->findAll();
-		$itemType = $results->getItemType();
+		list($itemType, $isArrayType) = $results->getItemType();
 
 		if (empty($itemType)) {
 			$results->items = $foundItems;
 		} else {
-			$results->items = $itemType::createFromMany($foundItems);
+			if ($isArrayType) {
+				$results->items = $itemType::createFromMany($foundItems);
+			} else {
+				$results->items = $itemType::createFromOne($foundItems);
+			}
 		}
 
 		return $results;
